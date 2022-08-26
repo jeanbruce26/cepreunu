@@ -12715,6 +12715,9 @@ span.flatpickr-weekday {
     /* background: #3bc87e; */
     background: #1a9933;
 }
+.auth-bg-login {
+    background: #1a9933;
+}
 .auth-bg-cover > .bg-overlay {
     background-image: url(../images/cover-pattern.png);
     background-position: center;
