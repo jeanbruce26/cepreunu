@@ -23,6 +23,8 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@mdi/font@6.9.96/css/materialdesignicons.min.css">
 
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+    @livewireStyles
 </head>
 
 <body class="auth-bg-login">
@@ -44,7 +46,7 @@
                         <div class="text-center text-white mx-5">
                             <p class="mt-3 fs-20 fw-bold">CENTRO PRE UNIVERSITARIO - UNU</p>
                             <p class="fs-15 fw-bold">SISTEMA DE MATRICULA</p>
-                            <p class="fs-15 fw-bold">++PROCESO++</p>
+                            <p class="fs-15 fw-bold">PROCESO {{$proceso->año}} - {{$proceso->numero_proceso}}</p>
                         </div>
                         <div class="text-center text-white">
                             <div>
@@ -65,48 +67,9 @@
                                 <div class="text-center mt-2">
                                     <h5 class="fw-bold">Formulario de validación de pago.</h5>
                                 </div>
-                                <div class="p-2 m-auto mt-2 col-10">
-                                    <form action="">
-                                        
-                                        <div class="mb-3">
-                                            <table>
-                                                <thead>
-                                                    <tr>
-                                                        <th class="d-flex me-1"><i class="uil uil-usd-circle"></i></th>
-                                                        <th class="text-justify"><label class="form-label"> Recuerda que, puedes realizar tu inscripción al día siguiente de haber hecho tu pago.</label></th>
-                                                    </tr>
-                                                </thead>
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                
+                                <livewire:login-inscripcion/>
 
-                                        <div class="mb-3">
-                                            <label class="form-label">Tipo de Documento *</label>
-                                            <select class="form-select mb-3" aria-label="Default select example">
-                                                <option value="" selected>Seleccione</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label class="form-label">Documento *</label>
-                                            <input type="text" class="form-control" placeholder="Ingrese su documento">
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label class="form-label">Número de Operación *</label>
-                                            <div class="position-relative auth-pass-inputgroup mb-3">
-                                                <input type="text" class="form-control pe-5" placeholder="Ingrese su número de operación">
-                                            </div>
-                                        </div>
-
-                                        <div class="mt-4">
-                                            <button class="btn btn-success w-100" type="submit">Ingresar</button>
-                                        </div>
-                                    </form>
-                                </div>
                             </div>
                             <!-- end card body -->
                         </div>
@@ -152,6 +115,8 @@
     <script src="{{ asset('assets/js/pages/particles.app.js') }}"></script>
     <!-- password-addon init -->
     <script src="{{ asset('assets/js/pages/password-addon.init.js') }}"></script>
+    
+    @livewireScripts
 </body>
 
 </html>

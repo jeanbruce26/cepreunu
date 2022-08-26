@@ -11,6 +11,16 @@ Auth::routes();
 
 Route::get('/administrador', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('inscripcion/login', [App\Http\Controllers\LoginInscripcionController::class, 'index'])->name('login');
-Route::post('inscripcion/login', [App\Http\Controllers\LoginInscripcionController::class, 'store'])->name('login.store');
-Route::post('inscripcion/logout', [App\Http\Controllers\LoginInscripcionController::class, 'logout'])->name('logout');
+
+
+
+
+
+
+
+
+
+Route::get('inscripcion/login', [App\Http\Controllers\LoginInscripcionController::class, 'index'])->name('usuario.login');
+Route::post('inscripcion/logout', [App\Http\Controllers\LoginInscripcionController::class, 'logout'])->name('usuario.logout');
+
+Route::get('inscripcion/terminos-condiciones', [App\Http\Controllers\UsuarioInscripcionController::class, 'index'])->middleware('auth:pagos')->name('usuario-terminos-condiciones');

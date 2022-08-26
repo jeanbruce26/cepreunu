@@ -2,22 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Proceso;
 use Illuminate\Http\Request;
 
 class LoginInscripcionController extends Controller
 {
     public function index()
     {
-        return view('usuario.auth.validacion');
-    }
-
-    public function store(Request $request)
-    {
-        //
+        $proceso = Proceso::where('estado',1)->first();
+        return view('usuario.auth.validacion', compact('proceso'));
     }
 
     public function logout(Request $request)
     {
-        //
+        auth('pagos')->logout();
+
+        return redirect()->route('usuario.login');
     }
 }
