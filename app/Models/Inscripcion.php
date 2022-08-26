@@ -25,9 +25,20 @@ class Inscripcion extends Model
     public $timestamps = false;
 
     // SedeCarrera
+    public function SedeCarrera(){
+        return $this->belongsTo(SedeCarrera::class,
+        'id_sede_carrera','id_sede_carrera');
+    }
 
     // Proceso
+    public function Proceso(){
+        return $this->belongsTo(Proceso::class,
+        'id_proceso','id_proceso');
+    }
 
-    // persona
-
+    // Persona
+    public function Persona(){
+        return $this->belongsTo(Persona::class,
+        'id_persona','id_persona');
+    }
 }
