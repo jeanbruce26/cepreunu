@@ -113,6 +113,10 @@
     --vz-input-disabled-bg: #eff2f7;
     --vz-input-group-addon-bg: #eff2f7;
     --vz-input-check-border: var(--vz-input-border);
+    --shadow-elevation-high:
+    0.5px 0.5px 0.9px hsl(var(--shadow-color) / 0.52),
+    9px 9.1px 15.5px -1px hsl(var(--shadow-color) / 0.61),
+    36px 36.4px 61.8px -1.9px hsl(var(--shadow-color) / 0.71);
 }
 [data-layout-mode="dark"] {
     --vz-gray-100: #1a1d21;
@@ -12652,7 +12656,7 @@ span.flatpickr-weekday {
     }
 }
 .auth-one-bg {
-    background-image: url(../images/auth-one-bg.jpg);
+    background-image: url(../images/unu-login2.jpg);
     background-position: center;
     background-size: cover;
 }
@@ -12661,11 +12665,11 @@ span.flatpickr-weekday {
         linear,
         left top,
         right top,
-        from(#41319c),
-        to(#4b38b3)
+        from(#ffffff00),
+        to(#ffffff00)
     );
-    background: linear-gradient(to right, #41319c, #4b38b3);
-    opacity: 0.9;
+    background: linear-gradient(to right, #ffffff00, #ffffff00);
+    opacity: 0.6;
 }
 .auth-one-bg .shape {
     position: absolute;
@@ -12707,7 +12711,9 @@ span.flatpickr-weekday {
     padding: 2px 16px;
 }
 .auth-bg-cover {
-    background: linear-gradient(-45deg, #4b38b3 50%, #45cb85);
+    /* background: linear-gradient(-45deg, #4b38b3 50%, #45cb85); */
+    /* background: #3bc87e; */
+    background: #1a9933;
 }
 .auth-bg-cover > .bg-overlay {
     background-image: url(../images/cover-pattern.png);
