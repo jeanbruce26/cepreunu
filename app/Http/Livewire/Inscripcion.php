@@ -19,7 +19,6 @@ use App\Models\TurnoSede;
 use App\Models\Ubigeo;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use Barryvdh\DomPDF\Facade\Pdf;
 
 class Inscripcion extends Component
 {
@@ -147,7 +146,7 @@ class Inscripcion extends Component
             ]);
         }
 
-        dd($this->all());
+        // dd($this->all());
 
         $data = $this->foto;
         $data = $filename = time().'_'.auth('pagos')->user()->dni.'.'.$data->extension();
@@ -193,9 +192,7 @@ class Inscripcion extends Component
             $pago->save();
         }
 
-        auth('pagos')->logout();
-
-        return redirect()->route('usuario.login');
+        return redirect()->route('usuario-pdf', $this->id_inscripcion);
     }
 
 

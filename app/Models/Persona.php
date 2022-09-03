@@ -11,6 +11,8 @@ class Persona extends Model
 
     protected $primaryKey = "id_persona";
 
+    protected $dates = ['fecha_nacimiento'];
+
     protected $table = 'persona';
     protected $fillable = [
         'id_persona',
@@ -43,7 +45,7 @@ class Persona extends Model
     // Ubigeo
     public function Ubigeo(){
         return $this->belongsTo(Ubigeo::class,
-        'ubigeo_codigo','ubigeo_codigo');
+        'id_ubigeo','id_ubigeo');
     }
 
     // TipoDocumento

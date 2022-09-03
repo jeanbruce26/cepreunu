@@ -102,7 +102,7 @@
                 <div class="row g-3 col-10 m-auto">
                     <div class="col-4">
                         <label class="form-label">Domicilio *</label>
-                        <input type="text" wire:model="direccion" class="form-control @error('direccion') is-invalid  @enderror" placeholder="Ingrese su dirección">
+                        <input type="text" wire:model="direccion" onkeyup="mayus(this);" class="form-control @error('direccion') is-invalid  @enderror" placeholder="Ingrese su dirección">
                     </div>
                     
                     <div class="col-4">
@@ -156,7 +156,7 @@
                             @else
                             <img src="{{asset('assets/images/user-dummy-img.jpg')}}" class="avatar-lg img-thumbnail user-profile-image" alt="user-profile-image">
                             @endif
-                            <input type="file" wire:model="foto" class="form-control mt-3 @error('foto') is-invalid  @enderror" accept="image/png, image/jpg">
+                            <input type="file" wire:model="foto" class="form-control mt-3 @error('foto') is-invalid  @enderror" accept="image/png,jpg">
                             @error('foto')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

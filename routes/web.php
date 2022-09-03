@@ -27,3 +27,5 @@ Route::get('inscripcion', [App\Http\Controllers\UsuarioInscripcionController::cl
 Route::get('inscripcion/sede', [App\Http\Controllers\UsuarioInscripcionController::class, 'sede'])->middleware('auth:pagos')->name('usuario-sede');
 Route::get('inscripcion/pagos/{id}', [App\Http\Controllers\UsuarioInscripcionController::class, 'pagos'])->middleware('auth:pagos')->name('usuario-pagos');
 Route::get('inscripcion/{id}', [App\Http\Controllers\UsuarioInscripcionController::class, 'inscripcion'])->middleware('auth:pagos')->name('usuario-inscripcion');
+Route::get('inscripcion/pdf/{id}', [App\Http\Controllers\UsuarioInscripcionController::class, 'pdf'])->middleware('auth:pagos')->name('usuario-pdf');
+// Route::get('inscripcion/pdf/{id}', [App\Http\Controllers\UsuarioInscripcionController::class, 'pdf'])->name('usuario-pdf');
