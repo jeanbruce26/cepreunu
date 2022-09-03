@@ -60,14 +60,15 @@ class LoginInscripcion extends Component
             auth('pagos')->login($pago);
             return redirect()->route('usuario-terminos-condiciones');
         }else if($pago->estado == 2){
-            // $inscripcion = InscripcionPago::join('pago','inscripcion_pago.pago_id','=','pago.pago_id')->where('pago.dni',$request->documento )->where('pago.nro_operacion',$request->nro_operacion)->where('pago.estado',2)->get();
-            // foreach($inscripcion as $item){
-            //     $id_inscripcion = $item->inscripcion_id;
-            // }
-            // auth('pagos')->login($pago);
-            // return redirect()->route('inscripcion.inscripcion', [$id_inscripcion]);
+            // dump($pago->id_inscripcion);
+            auth('pagos')->login($pago);
+            return redirect()->route('usuario-pagos', [$pago->id_inscripcion]);
         }else if($pago->estado == 3){
-            // return back()->with('mensaje','Usted ya no puede realizar una inscripción');
+            // dump($pago->id_inscripcion);
+            auth('pagos')->login($pago);
+            return redirect()->route('usuario-inscripcion', [$pago->id_inscripcion]);
+        }else if($pago->estado == 4){
+            return back()->with('mensaje','Usted ya no puede realizar una inscripción');
         }
 
     }

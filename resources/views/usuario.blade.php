@@ -9,6 +9,8 @@
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
 
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    
     <!-- plugin css -->
     <link href="{{ asset('assets/libs/jsvectormap/css/jsvectormap.min.css') }}" rel="stylesheet" type="text/css" />
 
@@ -26,6 +28,8 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@mdi/font@6.9.96/css/materialdesignicons.min.css">
 
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
 
     @livewireStyles
 
@@ -48,7 +52,7 @@
                                 <span class="logo-lg">
                                     <div class="d-flex justify-content-center align-items-center">
                                         <img src="{{ asset('assets/images/unu.png') }}" alt="" height="45">
-                                        <span class="fw-bold text-success fs-3 ms-2 align-self-center text-uppercase">CepreUNU</span>
+                                        <span class="fw-bold text-success fs-2 ms-2 align-self-center text-uppercase">CepreUNU</span>
                                     </div>
                                 </span>
                             </a>
@@ -65,18 +69,12 @@
 
                     <div class="d-flex align-items-center">
                         <div class="dropdown ms-sm-3 header-item topbar-user">
-                            <button type="button" class="btn shadow-none" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="d-flex align-items-center">
-                                    <span class="text-start">
-                                        <span class="d-none d-xl-inline-block fw-medium user-name-text">Documento: {{ auth('pagos')->user()->dni }}</span>
-                                    </span>
-                                </span>
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-end">
+                            <div class="d-flex align-items-center px-4">
                                 <form action="{{ route('usuario.logout') }}" method="post">
                                     @csrf
-                                    
-                                    <button class="dropdown-item" type="submit"><i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Cerrar Sesión</span></button>
+                                    <button type="submit" class="btn btn-danger">
+                                        Cerrar Sesión
+                                    </button>
                                 </form>
                             </div>
                         </div>
@@ -96,7 +94,7 @@
             <div class="page-content">
                 <div class="container-fluid">
 
-
+                    @yield('content')
 
                 </div>
                 <!-- container-fluid -->
@@ -137,10 +135,37 @@
     <!-- Dashboard init -->
     <script src="{{ asset('assets/js/pages/dashboard-analytics.init.js') }}"></script>
 
+    <!-- form wizard init -->
+    <script src="{{ asset('assets/js/pages/form-wizard.init.js') }}"></script>
+
+    <!-- prismjs plugin -->
+    <script src="{{ asset('assets/libs/prismjs/prism.js') }}"></script>
+    
     <!-- App js -->
     <script src="{{ asset('assets/js/app.js') }}"></script>
 
+    <!--jquery cdn-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <!--select2 cdn-->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="{{ asset('assets/js/pages/select2.init.js') }}"></script>
+
+    {{-- SweetAlert --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.29/dist/sweetalert2.all.min.js"></script>
+
     @livewireScripts
+    @stack('js')
+
+    <script>
+        window.addEventListener('confirmacion-pago', event =>{
+            Swal.fire(
+                'Pago guardado!',
+                'Su pago fue guardado satisfactoriamente.',
+                'success'
+            )
+        });
+    </script>
 </body>
 
 </html>
