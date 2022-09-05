@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sede;
+use App\Models\TipoConvenio;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,8 @@ class SedeController extends Controller
     public function index()
     {
         $sede = Sede::orderBy('id_sede','ASC')->paginate(10);
-        return view('Sede.index', compact('sede'));
+        $tipoConv = TipoConvenio::all();
+        return view('Sede.index', compact('sede', 'tipoConv'));
     }
 
     /**

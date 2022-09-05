@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pago;
+use App\Models\ModalidadPago;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,8 @@ class PagoController extends Controller
     public function index()
     {
         $pago = Pago::orderBy('id_pago','DESC')->paginate(10);
-        return view('Pago.index', compact('pago'));
+        $modPago = ModalidadPago::where('estado', 1)->get();
+        return view('Pago.index', compact('pago', 'modPago'));
     }
 
     /**
@@ -43,9 +45,10 @@ class PagoController extends Controller
             'monto'  =>  'required|numeric',
             'fecha_pago'  =>  'required|date',
             'id_modalidad_pago'  =>  'required|numeric',
-            'estado'  =>  'required|numeric',
         ]);
         $pago = Pago::create($request->all());
+        $pago->estado = 1;
+        $pago->save();
         session()->flash('new', '¡Pago Creado Satisfactoriamente!');
         return redirect()->route('Pago.index');
     }

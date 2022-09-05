@@ -50,19 +50,18 @@
                                                 </div>
                                             </td>
                                             <td>{{$item->SedeCarrera->sede->sede}}</td>
-                                            <td>{{$item->SedeCarrera->carrera->carrera}}</td>
+                                            <td>{{str_replace('CARRERA PROFESIONAL DE ','',$item->SedeCarrera->carrera->carrera)}}</td>
                                             <td>{{$item->SedeCarrera->modalidad->modalidad}}</td>
                                             <td>{{$item->turno}}</td>
                                             <td>S/. {{number_format($sumaPagos, 2)}}</td>
                                             <td>
                                                 @if($item->estado == 1)
-                                                    <span class="badge badge-soft-success">Activo</span>
+                                                    <span class="badge bg-success">Activo</span>
                                                 @else
-                                                    <span class="badge badge-soft-danger">Inactivo</span>
+                                                    <span class="badge bg-danger">Inactivo</span>
                                                 @endif
                                             </td>
                                             <td class="d-flex justify-content-star">
-                                                {{-- <a href="" type="button" class="btn btn-sm btn-info d-flex justify-content-center align-items-center text-center">Detalle <i class="bx bxs-info-circle ms-1"></i></a> --}}
                                                 <a href="#detalleModal" type="button" class="link-info fs-15" data-bs-toggle="modal" data-bs-target=""><i class="bx bx-info-circle bx-sm bx-burst-hover"></i></a>
                                                 <a href="#editModal" type="button" class="link-success fs-15" data-bs-toggle="modal" data-bs-target=""><i class="bx bx-edit bx-sm bx-burst-hover ms-2"></i></a>
                                             </td>

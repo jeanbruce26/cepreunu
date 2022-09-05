@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Persona;
+use App\Models\EstadoCivil;
+use App\Models\Discapacidad;
+use App\Models\LenguaMaterna;
+use App\Models\Egreso;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -16,7 +20,11 @@ class PersonaController extends Controller
     public function index()
     {
         $perso = Persona::orderBy('id_persona','ASC')->paginate(10);
-        return view('Persona.index', compact('perso'));
+        $estadoCivil = EstadoCivil::all();
+        $disca = Discapacidad::all();
+        $lengMater = LenguaMaterna::all();
+        $egreso = Egreso::all();
+        return view('Persona.index', compact('perso', 'estadoCivil', 'disca', 'lengMater', 'egreso'));
     }
 
     /**
@@ -76,8 +84,13 @@ class PersonaController extends Controller
         $request->validate([
             'numero_documento'  =>  'required|max:9',
         ]);
+
+        $año_egreso = Egreso::where('id_egreso', $request->id_egreso)->first();
+
         $perso = Persona::find($id);
         $perso->update($request->all());
+        $perso->año_egreso = $año_egreso->egreso;
+        $perso->save();
         if($perso->save()){
             return redirect(to: '/administrador/Persona')->with('edit', '¡Persona Actualizada Satisfactoriamente!');
         }else{

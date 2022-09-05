@@ -9,10 +9,11 @@ class Ubigeo extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = "ubigeo";
+    protected $primaryKey = "id_ubigeo";
 
     protected $table = 'ubigeo';
     protected $fillable = [
+        'id_ubigeo',
         'ubigeo',
         'distrito',
         'provincia',

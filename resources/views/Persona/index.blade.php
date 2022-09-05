@@ -42,8 +42,6 @@
                                             <td>{{$item->sexo}}</td>
                                             <td>{{$item->celular}}</td>
                                             <td class="d-flex justify-content-star">
-                                                {{-- <a href="#showModal" type="button" class="btn btn-sm btn-info d-flex justify-content-center align-items-center text-center" data-bs-toggle="modal" data-bs-target="#showModal{{$item->id_persona}}">Detalle <i class="bx bxs-info-circle ms-1"></i></a> --}}
-
                                                 <a href="#detalleModal" type="button" class="link-info fs-15" data-bs-toggle="modal" data-bs-target="#showModal{{$item->id_persona}}"><i class="bx bx-info-circle bx-sm bx-burst-hover"></i></a>
 
                                                 {{-- Modal Show --}}
@@ -117,14 +115,10 @@
                                                                     <label>Lengua Materna</label>
                                                                     <input class="form-control" type="text" value="{{ $item->LenguaMaterna->lengua_materna }}" disabled>
                                                                 </div>
-
-                                                                @if($item->discapacidad != null)
-                                                                    <div class="col-md-4">
-                                                                        <label>Discapacidad</label>
-                                                                        <input class="form-control" type="text" value="{{$item->discapacidad->discapacidad}}"disabled> 
-                                                                    </div>
-                                                                @endif
-                                                                
+                                                                <div class="col-md-4">
+                                                                    <label>Discapacidad</label>
+                                                                    <input class="form-control" type="text" value="{{$item->discapacidad->discapacidad}}"disabled> 
+                                                                </div>
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <a type="button" class="btn btn-secondary d-flex justify-content-center align-items-center" data-bs-dismiss="modal"><i class=" ri-close-line me-1 ri-lg"></i>Cerrar</a>
@@ -140,9 +134,6 @@
                                                 <div class="modal fade" id="editModal{{$item->id_persona}}" tabindex="-1" aria-labelledby="editModal" aria-hidden="true">
                                                     <div class="modal-dialog  modal-lg modal-dialog-scrollable">
                                                         <div class="modal-content">
-                                                            @php
-                                                                $disca = App\Models\Discapacidad::where('id_discapacidad', $item->id_discapacidad)->get();
-                                                            @endphp
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title" id="editModalLabel">Editar Alumno</h5></h5>
                                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -174,7 +165,7 @@
                                                                     </div>
                                                                     <div class="mb-2 col-md-4">
                                                                         <label>Fecha de Nacimiento</label>
-                                                                        <input class="form-control" type="date" id="inputFechaNac" name="fecha_nacimiento" value="{{ $item->fecha_nacimiento }}" onkeypress="return soloLetras(event)">
+                                                                        <input class="form-control" type="date" id="inputFechaNac" name="fecha_nacimiento" value="{{ $item->fecha_nacimiento }}">
                                                                     </div>
                                                                     <div class="mb-2 col-md-4">
                                                                         <label>Dirección</label>
@@ -188,17 +179,22 @@
                                                                         <label>Sexo</label>
                                                                         <select id="inputSexo" class="form-select" name="estado">
                                                                             <option value="" selected>Seleccione</option>
-                                                                            <option value="Activo" {{ $item->sexo == "MASCULINO" ? 'selected' : '' }}> Masculino</option>
-                                                                            <option value="Inactivo" {{ $item->sexo == "FEMENINO" ? 'selected' : '' }}> Femenino</option>
+                                                                            <option value="Activo" {{ $item->sexo == "MASCULINO" ? 'selected' : '' }}> MASCULINO</option>
+                                                                            <option value="Inactivo" {{ $item->sexo == "FEMENINO" ? 'selected' : '' }}> FEMENINO</option>
                                                                         </select>
                                                                     </div>
                                                                     <div class="mb-2 col-md-4">
                                                                         <label>Email</label>
-                                                                        <input class="form-control" type="email" id="inputEmail" name="email" value="{{ $item->email }}" maxlength="200" onkeypress="return soloLetras(event)">
+                                                                        <input class="form-control" type="email" id="inputEmail" name="email" value="{{ $item->email }}" maxlength="200">
                                                                     </div>
                                                                     <div class="mb-2 col-md-4">
                                                                         <label>Año de egreso</label>
-                                                                        <input class="form-control" type="text" id="inputAnioEgreso" name="año_egreso" value="{{ $item->año_egreso }}" maxlength="4" onkeypress="return soloNumeros(event)">
+                                                                        <select class="form-select" name="id_egreso">
+                                                                            <option value="" selected>Seleccione...</option>
+                                                                            @foreach ($egreso as $eg)
+                                                                                <option value="{{$eg->id_egreso}}" {{ $eg->id_egreso  == $item->id_egreso ? 'selected' : '' }}>{{$eg->egreso}}</option>
+                                                                            @endforeach
+                                                                        </select>
                                                                     </div>
                                                                     <div class="col-md-8">
                                                                         <label>Ubigeo</label>
@@ -206,7 +202,12 @@
                                                                     </div>
                                                                     <div class="mb-2 col-md-4">
                                                                         <label>Estado civil</label>
-                                                                        <input class="form-control" type="text" id="inputEstadoCivil" name="estado_civil" value="{{ $item->EstadoCivil->estado_civil }}" maxlength="200" onkeypress="return soloLetras(event)">
+                                                                        <select class="form-select" name="id_estado_civil">
+                                                                            <option value="" selected>Seleccione</option>
+                                                                            @foreach ($estadoCivil  as $estCiv)
+                                                                                <option value="{{$estCiv->id_estado_civil   }}" {{ $estCiv->id_estado_civil  == $item->id_estado_civil  ? 'selected' : '' }}>{{$estCiv->estado_civil}}</option>
+                                                                            @endforeach
+                                                                        </select>
                                                                     </div>
                                                                     <div class="mb-2 col-md-4">
                                                                         <label>Nombre de Apoderado</label>
@@ -217,22 +218,23 @@
                                                                         <input class="form-control" type="text" id="inputCelularApode" name="celular_apoderado" value="{{ $item->celular_apoderado }}" maxlength="9" onkeypress="return soloNumeros(event)">
                                                                     </div>
                                                                     <div class="col-md-4">
-                                                                        <label>Lengua Materna</label>
-                                                                        <input class="form-control" type="text" id="inputLenguaMater" name="lengua_materna" value="{{ $item->LenguaMaterna->lengua_materna }}" maxlength="200" onkeypress="return soloNumeros(event)">
+                                                                        <label>Lengua Materna</label> 
+                                                                        <select class="form-select" name="id_lengua_materna">
+                                                                            <option value="" selected>Seleccione...</option>
+                                                                            @foreach ($lengMater as $legMa)
+                                                                                <option value="{{$legMa->id_lengua_materna }}" {{ $legMa->id_lengua_materna  == $item->id_lengua_materna ? 'selected' : '' }}>{{$legMa->lengua_materna}}</option>
+                                                                            @endforeach
+                                                                        </select>
                                                                     </div>
-
-                                                                    @if($item->discapacidad != null)
-                                                                        <div class="col-md-4">
-                                                                            <label>Discapacidad</label>
-                                                                            <select class="form-select" name="discapacidad">
-                                                                                <option value="" selected>Seleccione...</option>
-                                                                                @foreach ($disca as $ite)
-                                                                                    <option value="{{$ite->id_discapacidad }}" {{ $ite->id_discapacidad  == $item->id_discapacidad ? 'selected' : '' }}>{{$ite->discapacidad}}</option>
-                                                                                @endforeach
-                                                                            </select>
-                                                                        </div>
-                                                                    @endif
-                                                                    
+                                                                    <div class="col-md-4">
+                                                                        <label>Discapacidad</label>
+                                                                        <select class="form-select" name="discapacidad">
+                                                                            <option value="" selected>Seleccione...</option>
+                                                                            @foreach ($disca as $ite)
+                                                                                <option value="{{$ite->id_discapacidad }}" {{ $ite->id_discapacidad  == $item->id_discapacidad ? 'selected' : '' }}>{{$ite->discapacidad}}</option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                    </div>
                                                                 </div>
                                                                 <div class="modal-footer col-12 d-flex justify-content-between">
                                                                     <a type="button" class="btn btn-secondary d-flex justify-content-center align-items-center" data-bs-dismiss="modal"><i class="bx bx-chevron-left me-1 bx-sm"></i>Cancelar</a>

@@ -10,14 +10,10 @@
                         <h4 class="card-title mb-0 flex-grow-1 fw-bold">SEDE</h4>
                         <a href="#newModal" type="button" class="btn btn-lg btn-primary pull-right d-flex justify-content-center align-items-center" data-bs-toggle="modal" data-bs-target="#newModal">Nuevo <i class="ri-add-circle-fill ms-1"></i></a>
 
-                        @foreach ($sede as $item)
                         {{-- Modal Nuevo --}}
                         <div class="modal fade" id="newModal" tabindex="-1" aria-labelledby="newModal" aria-hidden="true">
                             <div class="modal-dialog modal-x1 modal-dialog-scrollable">
                                 <div class="modal-content">
-                                    @php
-                                        $tipoConv = App\Models\TipoConvenio::where('id_tipo_convenio', $item->id_tipo_convenio)->get();
-                                    @endphp
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalLabel">Crear Sede</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -48,7 +44,6 @@
                             </div>
                         </div>
                         {{-- Modal Nuevo --}}
-                        @endforeach
 
                     </div>
                 </div><!-- end card header -->
@@ -78,9 +73,6 @@
                                                 <div class="modal fade" id="editModal{{$item->id_sede}}" tabindex="-1" aria-labelledby="editModal" aria-hidden="true">
                                                     <div class="modal-dialog  modal-x1 modal-dialog-scrollable">
                                                         <div class="modal-content">
-                                                            @php
-                                                                $tipoConv = App\Models\TipoConvenio::where('id_tipo_convenio', $item->id_tipo_convenio)->get();
-                                                            @endphp
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title" id="editModalLabel">Editar Sede</h5></h5>
                                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -94,11 +86,11 @@
                                                                     </div>
                                                                     <div class="mb-2 col-md-12">
                                                                         <label>Tipo de Convenio</label>
-                                                                        @foreach ($tipoConv as $tiCon)
-                                                                            <select class="form-select" name="id_tipo_convenio">
+                                                                        <select class="form-select" name="id_tipo_convenio">
+                                                                            @foreach ($tipoConv as $tiCon)
                                                                                 <option value="{{$tiCon->id_tipo_convenio}}" {{ $tiCon->id_tipo_convenio == $item->id_tipo_convenio ? 'selected' : '' }}>{{$tiCon->tipo_convenio}}</option>
-                                                                            </select>
-                                                                        @endforeach
+                                                                            @endforeach
+                                                                        </select>
                                                                     </div>
                                                                 </div>
                                                                 <div class="modal-footer col-12 d-flex justify-content-between">
