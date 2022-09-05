@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Discapacidad;
+use App\Models\ModalidadPago;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class DiscapacidadController extends Controller
+class ModalidadPagoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,8 @@ class DiscapacidadController extends Controller
      */
     public function index()
     {
-        //
+        $modPago = ModalidadPago::orderBy('id_modalidad_pago','ASC')->paginate(10);
+        return view('ModalidadPago.index', compact('modPago'));
     }
 
     /**
@@ -36,7 +37,14 @@ class DiscapacidadController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'modalidad_pago'  =>  'required|max:200',
+            'monto'  =>  'required|max:13',
+            'estado'  =>  'required|max:11'
+        ]);
+        $modPago = ModalidadPago::create($request->all());
+        session()->flash('new', '¡Modalidad de Pago Creada Satisfactoriamente!');
+        return redirect()->route('ModalidadPago.index');
     }
 
     /**
@@ -70,7 +78,20 @@ class DiscapacidadController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $modPago = ModalidadPago::find($id);
+
+        $request->validate([
+            'modalidad_pago'  =>  'required|max:200',
+            'monto'  =>  'required|max:13',
+            'estado'  =>  'required|max:11'
+        ]);
+        $modPago = ModalidadPago::find($id);
+        $modPago->update($request->all());
+        if($modPago->save()){
+            return redirect(to: '/administrador/ModalidadPago')->with('edit', '¡Modalidad de Pago Actualizado Satisfactoriamente!');
+        }else{
+            exit();
+        }
     }
 
     /**

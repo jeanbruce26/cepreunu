@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Models\Inscripcion;
 use Illuminate\Http\Request;
+
 
 class InscripcionController extends Controller
 {
@@ -14,7 +15,8 @@ class InscripcionController extends Controller
      */
     public function index()
     {
-        //
+        $insc = Inscripcion::orderBy('id_inscripcion','ASC')->paginate(10);
+        return view('Inscripcion.index', compact('insc'));
     }
 
     /**

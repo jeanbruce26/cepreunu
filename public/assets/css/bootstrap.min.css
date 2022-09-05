@@ -3681,8 +3681,8 @@ fieldset:disabled .btn {
 }
 .btn-group-lg > .btn,
 .btn-lg {
-    padding: 0.7rem 1.2rem;
-    font-size: 1.015625rem;
+    padding: 0.4rem 0.65rem;
+    font-size: 0.915625rem;
     border-radius: 0.3rem;
 }
 .btn-group-sm > .btn,

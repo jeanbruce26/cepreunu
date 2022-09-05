@@ -11,7 +11,14 @@ Auth::routes();
 
 Route::get('/administrador', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-
+Route::resource ('/administrador/Inscripcion', App\Http\Controllers\InscripcionController::class);
+Route::resource ('/administrador/Carrera', App\Http\Controllers\CarreraController::class);
+Route::resource ('/administrador/Egreso', App\Http\Controllers\EgresoController::class);
+Route::resource ('/administrador/ModalidadPago', App\Http\Controllers\ModalidadPagoController::class);
+Route::resource ('/administrador/Pago', App\Http\Controllers\PagoController::class);
+Route::resource ('/administrador/Persona', App\Http\Controllers\PersonaController::class);
+Route::resource ('/administrador/Proceso', App\Http\Controllers\ProcesoController::class);
+Route::resource ('/administrador/Sede', App\Http\Controllers\SedeController::class);
 
 
 

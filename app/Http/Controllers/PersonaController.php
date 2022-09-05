@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Persona;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class PersonaController extends Controller
      */
     public function index()
     {
-        //
+        $perso = Persona::orderBy('id_persona','ASC')->paginate(10);
+        return view('Persona.index', compact('perso'));
     }
 
     /**
@@ -69,7 +71,18 @@ class PersonaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $perso = Persona::find($id);
+
+        $request->validate([
+            'numero_documento'  =>  'required|max:9',
+        ]);
+        $perso = Persona::find($id);
+        $perso->update($request->all());
+        if($perso->save()){
+            return redirect(to: '/administrador/Persona')->with('edit', '¡Persona Actualizada Satisfactoriamente!');
+        }else{
+            exit();
+        }
     }
 
     /**

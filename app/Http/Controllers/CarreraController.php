@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Carrera;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class CarreraController extends Controller
      */
     public function index()
     {
-        //
+        $carre = Carrera::orderBy('id_carrera','ASC')->paginate(10);
+        return view('Carrera.index', compact('carre'));
     }
 
     /**
@@ -35,7 +37,12 @@ class CarreraController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'carrera'  =>  'required|max:200',
+        ]);
+        $carre = Carrera::create($request->all());
+        session()->flash('new', '¡Carrera Creada Satisfactoriamente!');
+        return redirect()->route('Carrera.index');
     }
 
     /**
@@ -69,7 +76,18 @@ class CarreraController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $carre = Carrera::find($id);
+
+        $request->validate([
+            'carrera'  =>  'required|max:200',
+        ]);
+        $carre = Carrera::find($id);
+        $carre->update($request->all());
+        if($carre->save()){
+            return redirect(to: '/administrador/Carrera')->with('edit', '¡Carrera Actualizada Satisfactoriamente!');
+        }else{
+            exit();
+        }
     }
 
     /**

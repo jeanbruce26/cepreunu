@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pago;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class PagoController extends Controller
      */
     public function index()
     {
-        //
+        $pago = Pago::orderBy('id_pago','DESC')->paginate(10);
+        return view('Pago.index', compact('pago'));
     }
 
     /**
@@ -35,7 +37,17 @@ class PagoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'dni'  =>  'required|min:8',
+            'numero_operacion'  =>  'required|numeric',
+            'monto'  =>  'required|numeric',
+            'fecha_pago'  =>  'required|date',
+            'id_modalidad_pago'  =>  'required|numeric',
+            'estado'  =>  'required|numeric',
+        ]);
+        $pago = Pago::create($request->all());
+        session()->flash('new', '¡Pago Creado Satisfactoriamente!');
+        return redirect()->route('Pago.index');
     }
 
     /**
@@ -69,7 +81,18 @@ class PagoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $pago = Pago::find($id);
+
+        $request->validate([
+            'dni'  =>  'required|max:9',
+        ]);
+        $pago = Pago::find($id);
+        $pago->update($request->all());
+        if($pago->save()){
+            return redirect(to: '/administrador/Pago')->with('edit', '¡Pago Actualizado Satisfactoriamente!');
+        }else{
+            exit();
+        }
     }
 
     /**

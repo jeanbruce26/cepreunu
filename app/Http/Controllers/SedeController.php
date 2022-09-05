@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Sede;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class SedeController extends Controller
      */
     public function index()
     {
-        //
+        $sede = Sede::orderBy('id_sede','ASC')->paginate(10);
+        return view('Sede.index', compact('sede'));
     }
 
     /**
@@ -35,7 +37,13 @@ class SedeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'sede'  =>  'required|max:200',
+            'id_tipo_convenio'  =>  'required'
+        ]);
+        $sede = Sede::create($request->all());
+        session()->flash('new', '¡Sede Creada Satisfactoriamente!');
+        return redirect()->route('Sede.index');
     }
 
     /**
@@ -69,7 +77,19 @@ class SedeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $sede = Sede::find($id);
+
+        $request->validate([
+            'sede'  =>  'required|max:200',
+            'id_tipo_convenio'  =>  'required'
+        ]);
+        $sede = Sede::find($id);
+        $sede->update($request->all());
+        if($sede->save()){
+            return redirect(to: '/administrador/Sede')->with('edit', '¡Sede Actualizada Satisfactoriamente!');
+        }else{
+            exit();
+        }
     }
 
     /**

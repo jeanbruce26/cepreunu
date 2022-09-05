@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Proceso;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class ProcesoController extends Controller
      */
     public function index()
     {
-        //
+        $proce = Proceso::orderBy('id_proceso','ASC')->paginate(10);
+        return view('Proceso.index', compact('proce'));
     }
 
     /**
@@ -35,7 +37,14 @@ class ProcesoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'año'  =>  'required|max:11',
+            'numero_proceso'  =>  'required|max:200',
+            'estado'  =>  'required'
+        ]);
+        $proce = Proceso::create($request->all());
+        session()->flash('new', '¡Proceso Creado Satisfactoriamente!');
+        return redirect()->route('Proceso.index');
     }
 
     /**
@@ -69,7 +78,20 @@ class ProcesoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $proce = Proceso::find($id);
+
+        $request->validate([
+            'año'  =>  'required|max:11',
+            'numero_proceso'  =>  'required|max:200',
+            'estado'  =>  'required'
+        ]);
+        $proce = Proceso::find($id);
+        $proce->update($request->all());
+        if($proce->save()){
+            return redirect(to: '/administrador/Proceso')->with('edit', '¡Proceso Actualizado Satisfactoriamente!');
+        }else{
+            exit();
+        }
     }
 
     /**

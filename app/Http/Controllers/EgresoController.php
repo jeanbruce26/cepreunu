@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Egreso;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class EgresoController extends Controller
      */
     public function index()
     {
-        //
+        $egreso = Egreso::orderBy('id_egreso','ASC')->paginate(10);
+        return view('Egreso.index', compact('egreso'));
     }
 
     /**
@@ -35,7 +37,12 @@ class EgresoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'egreso'  =>  'required|max:200',
+        ]);
+        $egreso = Egreso::create($request->all());
+        session()->flash('new', '¡Egreso Creado Satisfactoriamente!');
+        return redirect()->route('Egreso.index');
     }
 
     /**
@@ -69,7 +76,18 @@ class EgresoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $egreso = Egreso::find($id);
+
+        $request->validate([
+            'egreso'  =>  'required|max:4',
+        ]);
+        $egreso = Egreso::find($id);
+        $egreso->update($request->all());
+        if($egreso->save()){
+            return redirect(to: '/administrador/Egreso')->with('edit', '¡Egreso Actualizado Satisfactoriamente!');
+        }else{
+            exit();
+        }
     }
 
     /**
