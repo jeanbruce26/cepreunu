@@ -57,6 +57,26 @@
             <div class="mt-4">
                 <button class="btn btn-success w-100" type="submit">Ingresar</button>
             </div>
+
+            <div class="mt-4">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="d-flex me-1"><i class="uil uil-info-circle"></i></th>
+                            <th class="text-justify"><label class="form-label text-justify"> Por favor, revisa bien las guias antes de realizar tu matricula.</label></th>
+                        </tr>
+                    </thead>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="mt-2">
+                - <a class="guia text-dark cursor-pointer " data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    Guia de Inscripción
+                </a>
+            </div>
         </form>
     </div>
+
+    
 </div>

@@ -11,6 +11,8 @@ class Persona extends Model
 
     protected $primaryKey = "id_persona";
 
+    protected $dates = ['fecha_nacimiento'];
+
     protected $table = 'persona';
     protected $fillable = [
         'id_persona',
@@ -28,13 +30,14 @@ class Persona extends Model
         'pais_extra',
         'nombre_apoderado',
         'celular_apoderado',
-        'ubigeo_codigo',
+        'id_ubigeo',
         'id_tipo_documento',
         'id_discapacidad',
         'id_estado_civil',
         'id_lengua_materna',
         'id_modular',
         'id_egreso',
+        'id_etnia',
     ];
 
     public $timestamps = false;

@@ -12,6 +12,8 @@ class Pago extends Authenticatable
     protected $primaryKey = "id_pago";
     // protected $dates = ['fecha_pago'];
 
+    protected $dates = ['fecha_pago'];
+
     protected $table = 'pago';
     protected $fillable = [
         'id_pago', 

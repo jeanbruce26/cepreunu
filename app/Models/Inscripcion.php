@@ -16,6 +16,7 @@ class Inscripcion extends Model
         'id_inscripcion',
         'estado',
         'id_sede_carrera',
+        'sede',
         'turno',
         'id_proceso',
         'id_persona',
