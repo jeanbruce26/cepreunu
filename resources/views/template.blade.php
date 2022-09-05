@@ -129,7 +129,7 @@
             <!-- LOGO -->
             <div class="navbar-brand-box">
                 <!-- Light Logo-->
-                <a href="administrador" class="logo logo-light">
+                <a href="/administrador" class="logo logo-light">
                     <span class="logo-sm">
                         <img src="{{ asset('assets/images/unu.png') }}" alt="" height="35">
                     </span>
@@ -153,22 +153,26 @@
                     <ul class="navbar-nav" id="navbar-nav">
                         <li class="menu-title"><span data-key="t-menu">Menú</span></li>
 
-                        
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="#" role="button" aria-expanded="false" aria-controls="sidebarDashboard">
+                                <i class="mdi mdi-speedometer"></i> <span data-key="t-apps">Dashboard</span>
+                            </a>
+                        </li>
 
                         <li class="nav-item">
-                            <a class="nav-link menu-link" href="#sidebarApps" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarApps">
+                            <a class="nav-link menu-link" href="#sidebarInscripcion" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarInscripcion">
                                 <i class="mdi mdi-view-grid-plus-outline"></i> <span data-key="t-apps">Inscripción</span>
                             </a>
-                            <div class="collapse menu-dropdown" id="sidebarApps">
+                            <div class="collapse menu-dropdown" id="sidebarInscripcion">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
-                                        <a href="{{ route('Inscripcion.index') }}" class="nav-link" data-key="t-analytics"> Inscripcion </a>
+                                        <a href="{{ route('Inscripcion.index') }}" class="nav-link" data-key="t-inscripcion"> Inscripcion </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ route('Pago.index') }}" class="nav-link" data-key="t-analytics"> Pago </a>
+                                        <a href="{{ route('Pago.index') }}" class="nav-link" data-key="t-pago"> Pago </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ route('Proceso.index') }}" class="nav-link" data-key="t-analytics"> Proceso </a>
+                                        <a href="{{ route('Proceso.index') }}" class="nav-link" data-key="t-proceso"> Proceso </a>
                                     </li>
                                 </ul>
                             </div>
@@ -176,24 +180,24 @@
 
                         <li class="nav-item">
                             <a class="nav-link menu-link" href="#sidebarCruds" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarCruds">
-                                <i class="mdi mdi-speedometer"></i> <span data-key="t-dashboards">CRUDS</span>
+                                <i class="mdi mdi-tools"></i> <span data-key="t-cruds">CRUDS</span>
                             </a>
                             <div class="collapse menu-dropdown" id="sidebarCruds">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
-                                        <a href="{{ route('Carrera.index') }}" class="nav-link" data-key="t-analytics"> Carrera </a>
+                                        <a href="{{ route('Carrera.index') }}" class="nav-link" data-key="t-carrera"> Carrera </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ route('Egreso.index') }}" class="nav-link" data-key="t-analytics"> Egreso </a>
+                                        <a href="{{ route('Egreso.index') }}" class="nav-link" data-key="t-egreso"> Egreso </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ route('ModalidadPago.index') }}" class="nav-link" data-key="t-analytics"> Modalidad de Pago </a>
+                                        <a href="{{ route('ModalidadPago.index') }}" class="nav-link" data-key="t-modalidadPago"> Modalidad de Pago </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ route('Persona.index') }}" class="nav-link" data-key="t-analytics"> Persona </a>
+                                        <a href="{{ route('Persona.index') }}" class="nav-link" data-key="t-persona"> Persona </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ route('Sede.index') }}" class="nav-link" data-key="t-analytics"> Sede </a>
+                                        <a href="{{ route('Sede.index') }}" class="nav-link" data-key="t-sede"> Sede </a>
                                     </li>
                                 </ul>
                             </div>
