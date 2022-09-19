@@ -42,7 +42,7 @@
                                             <td>
                                                 <div class="d-flex gap-2 align-items-center">
                                                     <div class="flex-shrink-0">
-                                                        <img src="assets/images/users/avatar-5.jpg" alt="" class="avatar-xs rounded-circle" />
+                                                        <img src="{{ asset('storage/Inscripcion/'.$item->foto) }}" alt="" class="avatar-xs rounded-circle" />
                                                     </div>
                                                     <div class="flex-grow-1">
                                                         {{$item->persona->nombres}} {{$item->persona->apellido_paterno}} {{$item->persona->apellido_materno}}
